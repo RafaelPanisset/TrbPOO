@@ -124,6 +124,22 @@ public class Registro {
             System.out.println("Impossivel alterar este cliente !"); 
         }
     }
+	
+	public void incluir(Registro registro) {
+		/*if ( registro. == 0.0 && ficha.getAltura() == 0.0 && ficha.getImc() == 0.0){   
+			JOptionPane.showMessageDialog(null,"Todos os campos são obrigatórios!","AVISO",JOptionPane.WARNING_MESSAGE);
+            System.out.println("Os campos são obrigatórios!");
+        }
+        else{   
+        	if (pesquisar(registro) != null){   
+        		JOptionPane.showMessageDialog(null,"Cadastro da ficha medica não realizado!\n Já existe uma cliente com este cpf!","Mensagem de Erro",JOptionPane.ERROR_MESSAGE);
+                System.out.println("Cadastro da ficha medica não realizado! Já existe um cliente com este cpf!"); 
+            }
+            else { dmFichaMedica.incluir(this); }
+        }*/
+		dmRegistro.incluir(this);
+	}
+	
 
     
     public void shutDown(){   

@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import modelo.Cliente;
 import modelo.FichaMedica;
+import modelo.Registro;
 
 public class TelaRegistro extends JFrame {
 
@@ -29,7 +30,7 @@ public class TelaRegistro extends JFrame {
 	Cliente cpfCliente;
 	
 	FichaMedica ficha;
-	
+	Registro registro;
 	public TelaRegistro()
 	{
 		this.setSize(690,200);
@@ -92,8 +93,9 @@ public class TelaRegistro extends JFrame {
 					cpfCliente = (Cliente) cpfCliente.pesquisar(tCpfCliente.getText());
 					
 					if(cpfCliente != null) {
-						ficha = new FichaMedica(Integer.parseInt(numSemana),Integer.parseInt(ano),Integer.parseInt(diaSemana),cpfCliente);
-						ficha.incluir(ficha);
+						registro = new Registro(Integer.parseInt(numSemana),Integer.parseInt(ano),Integer.parseInt(diaSemana),cpfCliente);
+						//ficha.incluir(ficha);
+						registro.incluir(registro);
 					} else {
 						JOptionPane.showMessageDialog(null,"Cliente não encontrado!","AVISO",JOptionPane.WARNING_MESSAGE);
 			        	System.out.println("Cliente não encontrado!");

@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import modelo.Cliente;
 import modelo.Registro;
 
 public class DMRegistro extends DMGeral{
@@ -13,20 +14,26 @@ public class DMRegistro extends DMGeral{
     
     public void incluir(Object obj){  
     	Registro registro = (Registro) obj;
+    	Cliente cliente;
+    	cliente = new Cliente();
+    	cliente = (Cliente) cliente.pesquisar(registro.getCliente().getCpf());
+
         try
         {   
         	Statement statement = getConnection().createStatement();
-            
+             
+			
             String incluirSQL = "INSERT INTO tb_registro_treinos (" +
                                 "num_semana,ano,dia_semana,cliente) VALUES ('" +
                                 registro.getNumSemana()+ "', '" +
                                 registro.getAno() + "', '" +
                                 registro.getDiaSemana() + "', '" +
-                                registro.getCliente().getCpf() + "')";
+                                cliente.getId() + "')";
             
             System.out.println("Enviando código SQL: " + getConnection().nativeSQL(incluirSQL) + "\n");
             
             int result = statement.executeUpdate(incluirSQL);
+
             if (result == 1){   
             	JOptionPane.showMessageDialog(null,"registro cadastrada corretamente !","Mensagem de Informação",JOptionPane.INFORMATION_MESSAGE);}
             else{   

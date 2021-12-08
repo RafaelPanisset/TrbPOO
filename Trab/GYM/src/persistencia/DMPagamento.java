@@ -11,23 +11,26 @@ public class DMPagamento extends DMGeral {
     
     public void incluir(Object obj){  
     	Pagamento pagamento = (Pagamento) obj;
+    	Cliente cliente;
+    	cliente = new Cliente();
+    	cliente = (Cliente) cliente.pesquisar(pagamento.getCliente().getCpf());
         try
         {   
         	Statement statement = getConnection().createStatement();
             
             String incluirSQL = "INSERT INTO tb_pagamento (" +
-                                "valor,data_realizada,semana_vencimento,cliente) VALUES ('" +
+                                "valor,data_realizada,cliente) VALUES ('" +
                                 pagamento.getValor() + "', '" +
                                 pagamento.getDataRealizada() + "', '" +
-                                pagamento.getCliente().getCpf() + "')";
+                                cliente.getId() + "')";
             
             System.out.println("Enviando código SQL: " + getConnection().nativeSQL(incluirSQL) + "\n");
         	
             int result = statement.executeUpdate(incluirSQL);
-        	JOptionPane.showMessageDialog(null,result);
-
+ 
+    
             if (result == 1){   
-            	JOptionPane.showMessageDialog(null,"Cliente cadastrada corretamente !","Mensagem de Informação",JOptionPane.INFORMATION_MESSAGE);}
+            	JOptionPane.showMessageDialog(null,"Pagamento realizado com sucesso !","Mensagem de Informação",JOptionPane.INFORMATION_MESSAGE);}
             else{   
             	JOptionPane.showMessageDialog(null,"Erro ao cadastrar cliente!","Mensagem de Erro",JOptionPane.ERROR_MESSAGE);
             	pagamento.setValor(0);   
